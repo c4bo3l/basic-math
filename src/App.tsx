@@ -1,35 +1,81 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { HomeOutlined, NumberOutlined } from "@ant-design/icons";
+import { Layout, Menu } from "antd";
+import Sider from "antd/es/layout/Sider";
+import { Content } from "antd/es/layout/layout";
+import { ItemType, MenuItemType } from "antd/es/menu/hooks/useItems";
+import { useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import {
+  multiplicationPath,
+  multiplicationTablePath,
+  multiplicationTestPath,
+  rootPath,
+} from "./router/routeLink";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [collapsed, setCollapsed] = useState(false);
+
+  const navigate = useNavigate();
+
+  const menus: ItemType<MenuItemType>[] = [
+    {
+      key: rootPath,
+      icon: <HomeOutlined />,
+      label: "Home",
+    },
+    {
+      key: multiplicationPath,
+      icon: <NumberOutlined />,
+      label: "Multiplication",
+      children: [
+        {
+          key: multiplicationTablePath,
+          label: "Table",
+        },
+        {
+          key: multiplicationTestPath,
+          label: "Tests",
+        },
+      ],
+    },
+  ];
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Layout
+      style={{
+        width: "100vw",
+        height: "100vh",
+      }}
+    >
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+      >
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={[rootPath]}
+          items={menus}
+          onSelect={(x) => navigate(x.key)}
+        />
+      </Sider>
+      <Layout
+        style={{
+          padding: "8px 8px",
+          overflow: "auto",
+        }}
+      >
+        <Content
+          style={{
+            padding: 24,
+          }}
+        >
+          <Outlet />
+        </Content>
+      </Layout>
+    </Layout>
+  );
 }
 
-export default App
+export default App;
