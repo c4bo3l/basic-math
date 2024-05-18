@@ -1,6 +1,18 @@
-import { Alert, Button, Form, InputNumber, Progress } from "antd";
-import { useState } from "react";
-import { green, red } from "@ant-design/colors";
+import { TextField, Button, Container } from "@mui/material";
+import { Fragment, useState } from "react";
+import { useTranslation } from "react-i18next";
+import capitalizeEveryWord from "../../utils/capitalizeEveryWord";
+import {
+  TXT_ANSWER,
+  TXT_CORRECT_ANSWER,
+  TXT_FINISH,
+  TXT_NEXT,
+  TXT_QUESTION,
+  TXT_START,
+  TXT_TEST_COUNT,
+  TXT_WRONG_ANSWER,
+} from "../../translations/translationConstants";
+import { PieChart } from "@mui/x-charts/PieChart";
 
 export interface TestData {
   num1: number;
@@ -10,7 +22,8 @@ export interface TestData {
 }
 
 const MultiplicationTest = () => {
-  const [count, setCount] = useState(10);
+  const { t } = useTranslation();
+  const [count, setCount] = useState<number | null>(10);
   const [tests, setTests] = useState<TestData[]>([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [currentInput, setCurrentInput] = useState<number | null>(null);
@@ -32,93 +45,124 @@ const MultiplicationTest = () => {
   };
 
   const onNext = () => {
+    const currentCount = count || 10;
     if (currentIndex === -1) {
       generateTests();
-    } else if (currentIndex < count) {
+    } else if (currentIndex < currentCount) {
       const temp = [...tests];
       temp[currentIndex].result = currentInput;
       setTests([...temp]);
     }
 
-    setCurrentIndex((prev) => (prev + 1 > count ? -1 : prev + 1));
+    setCurrentIndex((prev) => (prev + 1 > currentCount ? -1 : prev + 1));
     setCurrentInput(null);
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onNext();
+  };
+
   return (
-    <Form
-      style={{
-        width: "100%",
-      }}
+    <Container
+      maxWidth="xs"
+      component="form"
+      onSubmit={handleSubmit}
+      noValidate
+      sx={{ mt: 1, minHeight: 600 }}
     >
-      {currentIndex !== -1 ? (
-        <Progress
-          percent={(currentIndex / count) * 100}
-          steps={count}
-          strokeColor={tests
-            .filter((x) => x.result !== null)
-            .map(({ result, answer }) =>
-              result !== answer ? red[5] : green[6]
-            )}
-          style={{
-            width: "100%",
-            marginBottom: "8px",
+      {currentIndex === -1 ? (
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          name="count"
+          autoFocus
+          defaultValue={count}
+          label={capitalizeEveryWord(t(TXT_TEST_COUNT))}
+          InputProps={{
+            type: "number",
+          }}
+          onChange={(e) => {
+            const newCount = parseInt(e.currentTarget.value);
+            setCount(isNaN(newCount) ? null : newCount);
           }}
         />
-      ) : null}
-      {currentIndex === -1 ? (
-        <Form.Item label="Test Count">
-          <InputNumber
-            value={count}
-            onChange={(value) => setCount(value || 10)}
-          />
-        </Form.Item>
-      ) : currentIndex < count ? (
-        <Form.Item
-          label={`${tests[currentIndex].num1} x ${tests[currentIndex].num2} =`}
-          colon={false}
-        >
-          <InputNumber
+      ) : currentIndex < (count || 10) ? (
+        <Fragment key={`test-${currentIndex}`}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
             autoFocus
-            value={currentInput}
-            onChange={(value) => setCurrentInput(value)}
+            label={capitalizeEveryWord(
+              `${t(TXT_QUESTION)} #${currentIndex + 1}`
+            )}
+            value={`${tests[currentIndex].num1} x ${tests[currentIndex].num2}`}
+            InputProps={{
+              readOnly: true,
+            }}
           />
-        </Form.Item>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            autoFocus
+            label={capitalizeEveryWord(`${t(TXT_ANSWER)} #${currentIndex + 1}`)}
+            defaultValue={currentInput}
+            InputProps={{
+              type: "number",
+            }}
+            onChange={(e) => setCurrentInput(parseInt(e.currentTarget.value))}
+          />
+        </Fragment>
       ) : (
-        <>
-          {tests.some((x) => x.answer === x.result) ? (
-            <Alert
-              type="success"
-              message={`Correct Answers: ${tests.filter((x) => x.answer === x.result).length}`}
-              style={{
-                marginBottom: "8px",
-              }}
-            />
-          ) : null}
-          {tests.some((x) => x.answer !== x.result) ? (
-            <Alert
-              type="error"
-              message={`Wrong Answers: ${
-                tests.filter((x) => x.answer !== x.result).length
-              }`}
-              style={{
-                marginBottom: "8px",
-              }}
-            />
-          ) : null}
-        </>
+        <PieChart
+          series={[
+            {
+              data: [
+                {
+                  id: 0,
+                  value: tests.filter((x) => x.answer === x.result).length,
+                  label: capitalizeEveryWord(t(TXT_CORRECT_ANSWER)),
+                },
+                {
+                  id: 1,
+                  value: tests.filter((x) => x.answer !== x.result).length,
+                  label: capitalizeEveryWord(t(TXT_WRONG_ANSWER)),
+                },
+              ],
+            },
+          ]}
+          slotProps={{
+            legend: {
+              direction: "row",
+              position: { vertical: "bottom", horizontal: "middle" },
+            },
+          }}
+          width={400}
+          height={380}
+        />
       )}
-      <Form.Item>
-        <Button
-          type="primary"
-          onClick={onNext}
-          disabled={
-            currentIndex >= 0 && currentIndex < count && currentInput === null
-          }
-        >
-          {currentIndex < count - 1 ? "Next" : "Finish"}
-        </Button>
-      </Form.Item>
-    </Form>
+
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        sx={{ mt: 3, mb: 2 }}
+        disabled={
+          currentIndex > -1 && currentIndex < (count || 10) && !currentInput
+        }
+      >
+        {t(
+          currentIndex === -1
+            ? TXT_START
+            : currentIndex < (count || 10)
+            ? TXT_NEXT
+            : TXT_FINISH
+        )}
+      </Button>
+    </Container>
   );
 };
 

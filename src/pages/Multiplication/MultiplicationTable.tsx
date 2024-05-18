@@ -1,43 +1,20 @@
-import { CloseOutlined } from "@ant-design/icons";
-import { Flex, Table, TableProps } from "antd";
-
 interface DataType {
   num1: number;
   num2: number;
   value: number;
 }
+import {
+  Grid,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@mui/material";
 
 const MultiplicationTable = () => {
   const maxNumber = 10;
   const arr = Array.from(Array(maxNumber).keys()).map((x) => x + 1);
-
-  const columns: TableProps<DataType>["columns"] = [
-    {
-      title: "num1",
-      dataIndex: "num1",
-      key: "num1",
-    },
-    {
-      title: "x",
-      key: "x",
-      render: () => <CloseOutlined />,
-    },
-    {
-      title: "num2",
-      dataIndex: "num2",
-      key: "num2",
-    },
-    {
-      title: "eq",
-      key: "eq",
-      render: () => "=",
-    },
-    {
-      title: "value",
-      dataIndex: "value",
-      key: "value",
-    },
-  ];
 
   const getRows = (num: number) => {
     return arr.map(
@@ -50,21 +27,31 @@ const MultiplicationTable = () => {
   };
 
   return (
-    <>
-      <Flex wrap gap="18px">
-        {arr.map((x) => (
-          <Table
-            key={`table-${x}`}
-            columns={columns}
-            dataSource={getRows(x)}
-            showHeader={false}
-            pagination={{
-              hideOnSinglePage: true
-            }}
-          />
-        ))}
-      </Flex>
-    </>
+    <Grid container spacing={2}>
+      {arr.map((num, index) => (
+        <Grid key={`${num}-${index}`} item xs={12} md={2}>
+          <Paper>
+            <Table
+              sx={{
+                width: "100%",
+              }}
+            >
+              <TableBody>
+                {getRows(num).map((data, dIndex) => (
+                  <TableRow key={`data-${dIndex}`}>
+                    <TableCell>{data.num1}</TableCell>
+                    <TableCell>x</TableCell>
+                    <TableCell>{data.num2}</TableCell>
+                    <TableCell>=</TableCell>
+                    <TableCell>{data.value}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Paper>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

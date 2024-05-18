@@ -1,0 +1,15 @@
+export const TXT_BASIC_MATH = 'basic match';
+export const TXT_MULTIPLICATION = 'multiplication';
+export const TXT_QUESTION = 'question';
+export const TXT_ANSWER = 'answer';
+export const TXT_START = 'start';
+export const TXT_NEXT = 'next';
+export const TXT_FINISH = 'finish';
+export const TXT_BACK_TO_START = 'back to start';
+export const TXT_MULTIPLICATION_TABLE = 'multiplication table';
+export const TXT_MULTIPLICATION_TEST = 'multiplication test';
+export const TXT_TEST_COUNT = 'test count';
+export const TXT_CORRECT_ANSWER = 'correct answer';
+export const TXT_WRONG_ANSWER = 'wrong answer';
+export const TXT_TIPS = 'tips';
+export const TXT_BACK = 'back';
