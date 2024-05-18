@@ -1,16 +1,3 @@
-- [Konsep](#konsep)
-	- [Penjelasan](#penjelasan)
-- [Perkalian 5](#perkalian-5)
-	- [Contoh](#contoh)
-		- [Contoh #1](#contoh-1)
-		- [Contoh #2](#contoh-2)
-		- [Contoh #3](#contoh-3)
-- [Multiplication By 11](#multiplication-by-11)
-	- [Contoh](#contoh-1)
-		- [Contoh #1](#contoh-1-1)
-		- [Contoh #2](#contoh-2-1)
-		- [Contoh #3](#contoh-3-1)
-
 # Konsep
 
 Perkalian adalah penjumlahan sebuah angka
@@ -53,7 +40,7 @@ a = 7
 Hasil: 5625
 ```
 
-# Multiplication By 11
+# Perkalian 11
 
 > [a][b] x 11 = [a]([a] + [b])[b]
 

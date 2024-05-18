@@ -1,16 +1,3 @@
-- [Concept](#concept)
-	- [Explanation](#explanation)
-- [Multiplication 5](#multiplication-5)
-	- [Examples](#examples)
-		- [Example #1](#example-1)
-		- [Example #2](#example-2)
-		- [Example #3](#example-3)
-- [Multiplication By 11](#multiplication-by-11)
-	- [Examples](#examples-1)
-		- [Example #1](#example-1-1)
-		- [Example #2](#example-2-1)
-		- [Example #3](#example-3-1)
-
 # Concept
 
 Multiplication is basically the sum of a number.
