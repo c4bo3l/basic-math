@@ -1,6 +1,7 @@
 import { RouteObject } from "react-router-dom";
 import Home from "../pages/Home";
 import {
+  configurationsPath,
   multiplicationPath,
   multiplicationTablePath,
   multiplicationTestPath,
@@ -12,6 +13,7 @@ import App from "../App";
 import MultiplicationTest from "../pages/Multiplication/MultipplicationTest";
 import Multiplication from "../pages/Multiplication/Multiplication";
 import MultiplicationTips from "../pages/Multiplication/MultiplicationTips";
+import Configurations from "../pages/Configuration/Configurations";
 
 const routes: RouteObject[] = [
   {
@@ -37,6 +39,10 @@ const routes: RouteObject[] = [
       {
         path: multiplicationTipsPath,
         Component: MultiplicationTips,
+      },
+      {
+        path: configurationsPath,
+        Component: Configurations,
       },
     ],
   },

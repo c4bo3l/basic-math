@@ -16,6 +16,12 @@ const enUS = {
   [constants.TXT_WRONG_ANSWER]: "wrong answer",
   [constants.TXT_TIPS]: "tips",
   [constants.TXT_BACK]: "back",
+  [constants.TXT_THEME]: "theme",
+  [constants.TXT_DARK]: "dark",
+  [constants.TXT_LIGHT]: "light",
+  [constants.TXT_ENUS]: "english",
+  [constants.TXT_IDID]: "indonesia",
+  [constants.TXT_LANGUAGE]: "language",
 };
 
 export default enUS;

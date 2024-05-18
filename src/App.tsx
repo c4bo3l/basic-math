@@ -12,20 +12,36 @@ import CustomAppBar from "./components/CustomAppBar";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useTranslation } from "react-i18next";
 import { TXT_BACK } from "./translations/translationConstants";
+import { useAtom } from "jotai";
+import ThemeState from "./jotai/ThemeState";
+import { useEffect, useMemo } from "react";
+import LanguageState from "./jotai/LanguageState";
 
 function App() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const theme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
+  const [currentTheme] = useAtom(ThemeState);
+  const [currentLang] = useAtom(LanguageState);
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: currentTheme,
+        },
+      }),
+    [currentTheme]
+  );
 
   const onGoBack = () => {
     navigate(-1);
   };
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLang);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentLang]);
 
   return (
     <StyledEngineProvider injectFirst>
