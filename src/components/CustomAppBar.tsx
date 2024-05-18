@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import MenuIcon from "@mui/icons-material/Menu";
-import { multiplicationPath, rootPath } from "../router/routeLink";
+import { configurationsPath, multiplicationPath, rootPath } from "../router/routeLink";
 import capitalizeEveryWord from "../utils/capitalizeEveryWord";
 import { useTranslation } from "react-i18next";
 import {
@@ -20,6 +20,7 @@ import {
   TXT_MULTIPLICATION,
 } from "../translations/translationConstants";
 import { useNavigate } from "react-router-dom";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 const CustomAppBar = () => {
   const { t } = useTranslation();
@@ -149,6 +150,12 @@ const CustomAppBar = () => {
               </Button>
             ))}
           </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+          <IconButton onClick={onMenuClicked(configurationsPath)}>
+            <SettingsIcon />
+          </IconButton>
+        </Box>
         </Toolbar>
       </Container>
     </AppBar>

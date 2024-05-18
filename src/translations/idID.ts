@@ -16,6 +16,12 @@ const idID = {
   [constants.TXT_WRONG_ANSWER]: "jawaban salah",
   [constants.TXT_TIPS]: "tip",
   [constants.TXT_BACK]: "kembali",
+  [constants.TXT_THEME]: "tema",
+  [constants.TXT_DARK]: "gelap",
+  [constants.TXT_LIGHT]: "terang",
+  [constants.TXT_ENUS]: "inggris",
+  [constants.TXT_IDID]: "indonesia",
+  [constants.TXT_LANGUAGE]: "bahasa",
 };
 
 export default idID;
