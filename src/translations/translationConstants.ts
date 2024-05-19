@@ -28,3 +28,6 @@ export const TXT_LENGTH = 'length';
 export const TXT_WIDTH = 'width';
 export const TXT_RADIUS = 'radius';
 export const TXT_QUIZ = 'quiz';
+export const TXT_BASE = 'base';
+export const TXT_HEIGHT = 'height';
+export const TXT_AREA = 'area';

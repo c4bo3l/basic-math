@@ -12,10 +12,11 @@ import {
 import { useState } from "react";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import MenuIcon from "@mui/icons-material/Menu";
-import { circumferencePath, configurationsPath, multiplicationPath, rootPath } from "../router/routeLink";
+import { areaPath, circumferencePath, configurationsPath, multiplicationPath, rootPath } from "../router/routeLink";
 import capitalizeEveryWord from "../utils/capitalizeEveryWord";
 import { useTranslation } from "react-i18next";
 import {
+  TXT_AREA,
   TXT_BASIC_MATH,
   TXT_CIRCUMFERENCE,
   TXT_MULTIPLICATION,
@@ -51,6 +52,10 @@ const CustomAppBar = () => {
     {
       label: TXT_CIRCUMFERENCE,
       path: circumferencePath,
+    },
+    {
+      label: TXT_AREA,
+      path: areaPath,
     },
   ];
 

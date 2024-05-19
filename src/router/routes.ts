@@ -1,6 +1,9 @@
 import { RouteObject } from "react-router-dom";
 import Home from "../pages/Home";
 import {
+  areaPath,
+  areaTestsPath,
+  areaTipsPath,
   circumferencePath,
   circumferenceTestsPath,
   circumferenceTipsPath,
@@ -20,6 +23,9 @@ import Configurations from "../pages/Configuration/Configurations";
 import Circumference from "../pages/Circumference/Circumference";
 import CircumferenceTips from "../pages/Circumference/CircumferenceTips";
 import CircumferenceTest from "../pages/Circumference/CircumferenceTest";
+import Area from "../pages/Area/Area";
+import AreaTest from "../pages/Area/AreaTest";
+import AreaTips from "../pages/Area/AreaTips";
 
 const routes: RouteObject[] = [
   {
@@ -61,6 +67,18 @@ const routes: RouteObject[] = [
       {
         path: circumferenceTestsPath,
         Component: CircumferenceTest,
+      },
+      {
+        path: areaPath,
+        Component: Area,
+      },
+      {
+        path: areaTipsPath,
+        Component: AreaTips,
+      },
+      {
+        path: areaTestsPath,
+        Component: AreaTest,
       },
     ],
   },
