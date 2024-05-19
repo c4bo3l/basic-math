@@ -7,3 +7,6 @@ export const configurationsPath = '/configurations';
 export const circumferencePath = '/circumference';
 export const circumferenceTipsPath = '/circumference/tips';
 export const circumferenceTestsPath = '/circumference/tests';
+export const areaPath = '/area';
+export const areaTipsPath = '/area/tips';
+export const areaTestsPath = '/area/tests';

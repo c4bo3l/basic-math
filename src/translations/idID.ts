@@ -31,6 +31,9 @@ const idID = {
   [constants.TXT_WIDTH]: "lebar",
   [constants.TXT_RADIUS]: "jari-jari",
   [constants.TXT_QUIZ]: "quiz",
+  [constants.TXT_BASE]: "alas",
+  [constants.TXT_HEIGHT]: "tinggi",
+  [constants.TXT_AREA]: "luas",
 };
 
 export default idID;

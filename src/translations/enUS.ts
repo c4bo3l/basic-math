@@ -31,6 +31,9 @@ const enUS = {
   [constants.TXT_WIDTH]: "width",
   [constants.TXT_RADIUS]: "radius",
   [constants.TXT_QUIZ]: "quiz",
+  [constants.TXT_BASE]: "base",
+  [constants.TXT_HEIGHT]: "height",
+  [constants.TXT_AREA]: "area",
 };
 
 export default enUS;

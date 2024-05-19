@@ -12,8 +12,10 @@ import { useTranslation } from "react-i18next";
 import capitalizeEveryWord from "../../utils/capitalizeEveryWord";
 import {
   TXT_ANSWER,
+  TXT_BASE,
   TXT_CORRECT_ANSWER,
   TXT_FINISH,
+  TXT_HEIGHT,
   TXT_LENGTH,
   TXT_NEXT,
   TXT_QUESTION,
@@ -38,9 +40,8 @@ type RectData = {
 };
 
 type TriangleData = {
-  a: number;
-  b: number;
-  c: number;
+  base: number;
+  height: number;
 };
 
 type CircleData = {
@@ -56,7 +57,7 @@ interface TestData {
   input: number | null;
 }
 
-const CircumferenceTest = () => {
+const AreaTest = () => {
   const { t } = useTranslation();
   const [count, setCount] = useState<number | null>(10);
   const [tests, setTests] = useState<TestData[]>([]);
@@ -86,9 +87,8 @@ const CircumferenceTest = () => {
   });
 
   const generateTriangleData = (): TriangleData => ({
-    a: Math.floor(Math.random() * 10) + 1,
-    b: Math.floor(Math.random() * 10) + 1,
-    c: Math.floor(Math.random() * 10) + 1,
+    base: Math.floor(Math.random() * 10) + 1,
+    height: Math.floor(Math.random() * 10) + 1,
   });
 
   const getShapeTestData = (shapeType: ShapeType) => {
@@ -105,15 +105,16 @@ const CircumferenceTest = () => {
   };
 
   const calcCircle = (data: CircleData) =>
-    parseFloat(((2 * 22 * data.r) / 7).toFixed(2));
+    parseFloat(((22 * data.r * data.r) / 7).toFixed(2));
 
-  const calcRect = (data: RectData) => 2 * (data.l + data.w);
+  const calcRect = (data: RectData) => data.l * data.w;
 
-  const calcSquare = (data: SquareData) => 4 * data.r;
+  const calcSquare = (data: SquareData) => data.r * data.r;
 
-  const calcTriangle = (data: TriangleData) => data.a + data.b + data.c;
+  const calcTriangle = (data: TriangleData) =>
+    parseFloat(((data.base * data.height) / 2).toFixed(2));
 
-  const calculateCircumference = (shapeType: ShapeType, data: Data) => {
+  const calculateArea = (shapeType: ShapeType, data: Data) => {
     switch (shapeType) {
       case "circle":
         return calcCircle(data as CircleData);
@@ -130,7 +131,7 @@ const CircumferenceTest = () => {
     const generated = Array.from(Array(getCount()).keys()).map(() => {
       const shapeType = getShapeType();
       const data = getShapeTestData(shapeType);
-      const answer = calculateCircumference(shapeType, data);
+      const answer = calculateArea(shapeType, data);
       const test: TestData = {
         shapeType,
         data,
@@ -161,9 +162,7 @@ const CircumferenceTest = () => {
     onNext();
   };
 
-  const onInputChanged = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const onInputChanged = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const newValue = parseFloat(e.currentTarget.value);
     setCurrentInput(isNaN(newValue) ? null : newValue);
   };
@@ -239,13 +238,14 @@ const CircumferenceTest = () => {
           {tests[currentIndex].shapeType === "triangle" ? (
             <>
               <Typography variant="body1">
-                {`a = ${(tests[currentIndex].data as TriangleData).a}`}
+                {`${capitalizeEveryWord(t(TXT_BASE))} = ${
+                  (tests[currentIndex].data as TriangleData).base
+                }`}
               </Typography>
               <Typography variant="body1">
-                {`b = ${(tests[currentIndex].data as TriangleData).b}`}
-              </Typography>
-              <Typography variant="body1">
-                {`c = ${(tests[currentIndex].data as TriangleData).c}`}
+                {`${capitalizeEveryWord(t(TXT_HEIGHT))} = ${
+                  (tests[currentIndex].data as TriangleData).height
+                }`}
               </Typography>
             </>
           ) : null}
@@ -314,4 +314,4 @@ const CircumferenceTest = () => {
   );
 };
 
-export default CircumferenceTest;
+export default AreaTest;
