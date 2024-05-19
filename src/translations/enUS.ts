@@ -22,6 +22,15 @@ const enUS = {
   [constants.TXT_ENUS]: "english",
   [constants.TXT_IDID]: "indonesia",
   [constants.TXT_LANGUAGE]: "language",
+  [constants.TXT_CIRCUMFERENCE]: "circumference",
+  [constants.TXT_CIRCLE]: "circle",
+  [constants.TXT_RECT]: "rect",
+  [constants.TXT_SQUARE]: "square",
+  [constants.TXT_TRIANGLE]: "triangle",
+  [constants.TXT_LENGTH]: "length",
+  [constants.TXT_WIDTH]: "width",
+  [constants.TXT_RADIUS]: "radius",
+  [constants.TXT_QUIZ]: "quiz",
 };
 
 export default enUS;

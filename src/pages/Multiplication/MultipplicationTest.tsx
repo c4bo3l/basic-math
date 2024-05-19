@@ -1,4 +1,4 @@
-import { TextField, Button, Container } from "@mui/material";
+import { TextField, Button, Container, useTheme } from "@mui/material";
 import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
 import capitalizeEveryWord from "../../utils/capitalizeEveryWord";
@@ -27,6 +27,7 @@ const MultiplicationTest = () => {
   const [tests, setTests] = useState<TestData[]>([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [currentInput, setCurrentInput] = useState<number | null>(null);
+  const theme = useTheme();
 
   const generateTests = () => {
     const generated = Array.from(Array(count).keys()).map(() => {
@@ -125,11 +126,13 @@ const MultiplicationTest = () => {
                   id: 0,
                   value: tests.filter((x) => x.answer === x.result).length,
                   label: capitalizeEveryWord(t(TXT_CORRECT_ANSWER)),
+                  color: theme.palette.success.main,
                 },
                 {
                   id: 1,
                   value: tests.filter((x) => x.answer !== x.result).length,
                   label: capitalizeEveryWord(t(TXT_WRONG_ANSWER)),
+                  color: theme.palette.error.main,
                 },
               ],
             },

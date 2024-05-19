@@ -1,6 +1,9 @@
 import { RouteObject } from "react-router-dom";
 import Home from "../pages/Home";
 import {
+  circumferencePath,
+  circumferenceTestsPath,
+  circumferenceTipsPath,
   configurationsPath,
   multiplicationPath,
   multiplicationTablePath,
@@ -14,6 +17,9 @@ import MultiplicationTest from "../pages/Multiplication/MultipplicationTest";
 import Multiplication from "../pages/Multiplication/Multiplication";
 import MultiplicationTips from "../pages/Multiplication/MultiplicationTips";
 import Configurations from "../pages/Configuration/Configurations";
+import Circumference from "../pages/Circumference/Circumference";
+import CircumferenceTips from "../pages/Circumference/CircumferenceTips";
+import CircumferenceTest from "../pages/Circumference/CircumferenceTest";
 
 const routes: RouteObject[] = [
   {
@@ -43,6 +49,18 @@ const routes: RouteObject[] = [
       {
         path: configurationsPath,
         Component: Configurations,
+      },
+      {
+        path: circumferencePath,
+        Component: Circumference,
+      },
+      {
+        path: circumferenceTipsPath,
+        Component: CircumferenceTips,
+      },
+      {
+        path: circumferenceTestsPath,
+        Component: CircumferenceTest,
       },
     ],
   },

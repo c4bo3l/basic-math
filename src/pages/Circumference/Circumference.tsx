@@ -1,23 +1,14 @@
 import { Card, CardActionArea, Grid, Typography } from "@mui/material";
 import { ReactNode } from "react";
-import {
-  TXT_MULTIPLICATION_TABLE,
-  TXT_QUIZ,
-  TXT_TIPS,
-} from "../../translations/translationConstants";
-import TableRowsIcon from "@mui/icons-material/TableRows";
-import {
-  multiplicationTablePath,
-  multiplicationTestPath,
-  multiplicationTipsPath,
-} from "../../router/routeLink";
-import QuizIcon from "@mui/icons-material/Quiz";
+import { TXT_QUIZ, TXT_TIPS } from "../../translations/translationConstants";
+import { circumferenceTestsPath, circumferenceTipsPath } from "../../router/routeLink";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import capitalizeEveryWord from "../../utils/capitalizeEveryWord";
-import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
+import QuizIcon from "@mui/icons-material/Quiz";
 
-const Multiplication = () => {
+const Circumference = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const onMenuClicked = (path: string) => {
@@ -28,23 +19,18 @@ const Multiplication = () => {
     {
       label: TXT_TIPS,
       icon: <TipsAndUpdatesIcon />,
-      path: multiplicationTipsPath,
-    },
-    {
-      label: TXT_MULTIPLICATION_TABLE,
-      icon: <TableRowsIcon />,
-      path: multiplicationTablePath,
+      path: circumferenceTipsPath,
     },
     {
       label: TXT_QUIZ,
       icon: <QuizIcon />,
-      path: multiplicationTestPath,
+      path: circumferenceTestsPath,
     },
   ];
   return (
     <Grid container spacing={2}>
       {menus.map((menu, index) => (
-        <Grid key={`multiplication-menu-${index}`} item xs={12} md={3}>
+        <Grid key={`circumference-menu-${index}`} item xs={12} md={3}>
           <Card>
             <CardActionArea
               onClick={onMenuClicked(menu.path)}
@@ -73,4 +59,4 @@ const Multiplication = () => {
   );
 };
 
-export default Multiplication;
+export default Circumference;

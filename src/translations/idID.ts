@@ -22,6 +22,15 @@ const idID = {
   [constants.TXT_ENUS]: "inggris",
   [constants.TXT_IDID]: "indonesia",
   [constants.TXT_LANGUAGE]: "bahasa",
+  [constants.TXT_CIRCUMFERENCE]: "keliling",
+  [constants.TXT_CIRCLE]: "lingkaran",
+  [constants.TXT_RECT]: "persegi panjang",
+  [constants.TXT_SQUARE]: "kotak",
+  [constants.TXT_TRIANGLE]: "segitiga",
+  [constants.TXT_LENGTH]: "panjang",
+  [constants.TXT_WIDTH]: "lebar",
+  [constants.TXT_RADIUS]: "jari-jari",
+  [constants.TXT_QUIZ]: "quiz",
 };
 
 export default idID;
