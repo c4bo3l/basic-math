@@ -24,7 +24,7 @@ const enUS = {
   [constants.TXT_LANGUAGE]: "language",
   [constants.TXT_CIRCUMFERENCE]: "circumference",
   [constants.TXT_CIRCLE]: "circle",
-  [constants.TXT_RECT]: "rect",
+  [constants.TXT_RECT]: "rectangle",
   [constants.TXT_SQUARE]: "square",
   [constants.TXT_TRIANGLE]: "triangle",
   [constants.TXT_LENGTH]: "length",
